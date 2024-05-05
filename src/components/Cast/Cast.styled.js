@@ -37,7 +37,7 @@ export const CastListItem = styled.li`
 `;
 
 export const CastImage = styled.img`
-  border-radius: 20px;
+  border-radius: 15px;
   object-fit: cover;
 `;
 
