@@ -10,6 +10,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 // Importujemy komponenty, które zostaną użyte w naszej aplikacji
 // Używamy funkcji `lazy` do opóźnionego ładowania komponentów, co poprawia wydajność aplikacji
 const SharedLayout = lazy(() => import('./SharedLayout/SharedLayout')); // Komponent dzielonego układu
+
 const Home = lazy(() => import('../pages/Home')); // Komponent strony głównej
 const Movies = lazy(() => import('../pages/Movies')); // Komponent strony filmów
 const MovieDetails = lazy(() => import('../pages/MovieDetails')); // Komponent szczegółów filmu
