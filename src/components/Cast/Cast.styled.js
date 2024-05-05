@@ -1,3 +1,5 @@
+// Cast.styled.js
+
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
@@ -25,6 +27,18 @@ export const CastListItem = styled.li`
   width: calc((100% - 4 * 40px) / 5);
   height: 400px;
   word-wrap: break-word;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+`;
+
+export const CastImage = styled.img`
+  border-radius: 20px;
+  object-fit: cover;
 `;
 
 export const CastInfo = styled.div`

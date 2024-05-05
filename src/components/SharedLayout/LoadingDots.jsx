@@ -1,13 +1,17 @@
-import { Dot, LoadingDots } from './SharedLayout.styled'; // додаємо стилі
+// LoadingDots.jsx
 
-// додаємо індикатор завантаження
+// Importujemy wymagane zależności i komponenty stylizowane
+import { Dot, LoadingDots } from './SharedLayout.styled'; // Importujemy komponenty stylizowane z pliku SharedLayout.styled
+
+// Komponent LoadingIndicator renderuje animowany wskaźnik ładowania w postaci kropek
 export const LoadingIndicator = () => {
   return (
-    // додаємо анімацію для індикатора завантаження
+    // Komponent LoadingDots definiuje kontener dla animowanych kropek
     <LoadingDots>
-      <Dot delay="0s" />
-      <Dot delay=".2s" />
-      <Dot delay=".4s" />
+      {/* Komponent Dot reprezentuje pojedynczą kropkę z opcjonalnym opóźnieniem */}
+      <Dot delay="0s" /> {/* Pierwsza kropka bez opóźnienia */}
+      <Dot delay=".2s" /> {/* Druga kropka z opóźnieniem 0.2 sekundy */}
+      <Dot delay=".4s" /> {/* Trzecia kropka z opóźnieniem 0.4 sekundy */}
     </LoadingDots>
   );
 };

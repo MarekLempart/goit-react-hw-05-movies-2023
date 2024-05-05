@@ -1,45 +1,54 @@
-import MovieList from 'components/MovieList/MovieList'; // компонент для відображення списку фільмів
-import { LoadingIndicator } from 'components/SharedLayout/LoadingDots'; // індикатор завантаження
-import { useEffect, useState } from 'react';
-import { fetchTrendMovies } from '../services/api';
+// Home.jsx
 
+// Importujemy komponenty i funkcje zależności
+import MovieList from 'components/MovieList/MovieList'; // Komponent do wyświetlania listy filmów
+import { LoadingIndicator } from 'components/SharedLayout/LoadingDots'; // Komponent wskaźnika ładowania
+import { useEffect, useState } from 'react'; // Importujemy hooki useEffect i useState z Reacta
+import { fetchTrendMovies } from '../services/api'; // Importujemy funkcję fetchTrendMovies z pliku api w folderze services
+
+// Komponent Home
 const Home = () => {
-  const [trendingMovies, setTrendingMovies] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(false);
+  // Definiujemy stany dla trendingMovies, isLoading i error za pomocą hooków useState
+  const [trendingMovies, setTrendingMovies] = useState([]); // Stan przechowujący listę trendujących filmów
+  const [isLoading, setIsLoading] = useState(true); // Stan informujący o stanie ładowania
+  const [error, setError] = useState(false); // Stan informujący o wystąpieniu błędu
 
-  // додаємо запит на трендові фільми
+  // Efekt pobierający listę trendujących filmów przy załadowaniu komponentu
   useEffect(() => {
+    // Definiujemy funkcję asynchroniczną fetchTrendingMovies
     const fetchTrendingMovies = async () => {
       try {
-        setError(false);
-        setIsLoading(true);
-        const { results } = await fetchTrendMovies();
-        setTrendingMovies(results); // записуємо в стейт
+        setError(false); // Resetujemy stan błędu
+        setIsLoading(true); // Ustawiamy stan ładowania na true
+        const { results } = await fetchTrendMovies(); // Wywołujemy funkcję fetchTrendMovies, która pobiera trendy filmy z API
+        setTrendingMovies(results); // Ustawiamy trendy filmy w stanie komponentu
       } catch (error) {
-        setError(true);
+        setError(true); // Ustawiamy stan błędu na true w przypadku błędu podczas pobierania danych
       } finally {
-        setIsLoading(false);
+        setIsLoading(false); // Ustawiamy stan ładowania na false niezależnie od sukcesu lub błędu
       }
     };
 
-    fetchTrendingMovies();
-  }, []);
+    fetchTrendingMovies(); // Wywołujemy funkcję pobierającą trendy filmy
+  }, []); // Efekt wywoływany tylko raz po załadowaniu komponentu
 
+  // Zwracamy treść komponentu
   return (
     <>
-      {/* додаємо перевірку на стан завантаження */}
-      {isLoading ? (
+      {/* Warunek sprawdzający stan ładowania */}
+      {isLoading ? ( // Jeśli isLoading jest true, wyświetlamy wskaźnik ładowania
         <LoadingIndicator />
-      ) : error ? (
+      ) : error ? ( // Jeśli wystąpił błąd, wyświetlamy komunikat o błędzie
         <p>
-          Sorry, we could not fetch the trending movies. Please try again later.
+          Przepraszamy, nie udało się pobrać listy trendujących filmów. Spróbuj
+          ponownie później.
         </p>
       ) : (
+        // W przeciwnym razie wyświetlamy komponent MovieList z przekazaną listą trendujących filmów
         <MovieList trendingMovies={trendingMovies} />
       )}
     </>
   );
 };
 
-export default Home;
+export default Home; // Eksportujemy komponent Home

@@ -1,45 +1,52 @@
-import { LoadingIndicator } from 'components/SharedLayout/LoadingDots';
-import { Suspense, useEffect, useState } from 'react'; // додаємо бібліотеку для lazy
-import { BsArrowLeftShort } from 'react-icons/bs'; // додаємо бібліотеку для іконки
-import { Link, Outlet, useLocation, useParams } from 'react-router-dom'; // додаємо бібліотеку для роботи з адресою
-import MovieCard from '../components/MovieCard/MovieCard';
-import { fetchMovieById } from '../services/api'; // додаємо запит на фільм
-import { Button, Container } from './MovieDelails.styled';
+// MovieDelails.jsx
 
-const MovieDelails = () => {
-  const { movieId } = useParams();
-  const location = useLocation();
-  const [selectedMovie, setSelectedMovie] = useState({});
+// Importujemy potrzebne zależności i komponenty
+import { LoadingIndicator } from 'components/SharedLayout/LoadingDots'; // Komponent wskaźnika ładowania
+import { Suspense, useEffect, useState } from 'react'; // Importujemy hooki useEffect, useState i komponent Suspense z Reacta
+import { BsArrowLeftShort } from 'react-icons/bs'; // Ikona strzałki w lewo
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom'; // Hooki i komponenty związane z routerem
+import MovieCard from '../components/MovieCard/MovieCard'; // Komponent karty filmu
+import { fetchMovieById } from '../services/api'; // Funkcja do pobierania danych o filmie
+import { Button, Container } from './MovieDelails.styled'; // Stylizowane komponenty dla szczegółów filmu
 
-  // додаємо запит на фільм
+// Komponent MovieDetails
+const MovieDetails = () => {
+  // Pobieramy parametry z adresu URL
+  const { movieId } = useParams(); // ID filmu
+  const location = useLocation(); // Aktualna lokalizacja
+  const [selectedMovie, setSelectedMovie] = useState({}); // Stan przechowujący wybrany film
+
+  // Efekt pobierający dane o wybranym filmie przy załadowaniu komponentu lub zmianie ID filmu
   useEffect(() => {
+    // Funkcja asynchroniczna do pobierania danych o filmie na podstawie jego ID
     const fetchSelectedMovie = async movieId => {
       try {
-        const movieData = await fetchMovieById(movieId);
-        setSelectedMovie(movieData);
+        const movieData = await fetchMovieById(movieId); // Pobieramy dane o filmie
+        setSelectedMovie(movieData); // Ustawiamy dane o filmie w stanie komponentu
       } catch (error) {
-        console.log(error);
+        console.log(error); // Obsługa błędu w przypadku niepowodzenia pobierania danych
       }
     };
 
-    fetchSelectedMovie(movieId);
-  }, [movieId]);
+    fetchSelectedMovie(movieId); // Wywołujemy funkcję pobierającą dane o filmie
+  }, [movieId]); // Efekt wywoływany przy zmianie ID filmu
 
+  // Zwracamy treść komponentu
   return (
     <main>
       <Container>
-        {/* додаємо кнопку для повернення на попередню сторінку */}
+        {/* Przycisk do powrotu do poprzedniej strony */}
         <Link to={location?.state?.from ?? '/'}>
           <Button type="button">
             <BsArrowLeftShort
               style={{ width: '25px', height: '25px', display: 'inline-block' }}
             />
-            Go back
+            Powrót
           </Button>
         </Link>
-        <MovieCard movie={selectedMovie} />{' '}
-        {/* додаємо компонент для відображення фільму */}
-        {/* додаємо відкладений рендеринг дочірніх компонентів */}
+        {/* Komponent wyświetlający kartę filmu */}
+        <MovieCard movie={selectedMovie} />
+        {/* Wyświetlenie zawartości zagnieżdżonych tras */}
         <Suspense fallback={<LoadingIndicator />}>
           <Outlet />
         </Suspense>
@@ -48,4 +55,4 @@ const MovieDelails = () => {
   );
 };
 
-export default MovieDelails;
+export default MovieDetails; // Eksportujemy komponent MovieDetails

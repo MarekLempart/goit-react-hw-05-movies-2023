@@ -1,5 +1,7 @@
-import styled from 'styled-components';
+// MovieList.styled.js
+
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 export const StyledSection = styled.section`
   padding-right: 50px;

@@ -1,5 +1,7 @@
-import styled, { keyframes } from 'styled-components';
+// SharedLauout.styled.js
+
 import { NavLink } from 'react-router-dom';
+import styled, { keyframes } from 'styled-components';
 
 export const StyledHeader = styled.header`
   padding: 20px 30px;
@@ -49,7 +51,7 @@ export const Dot = styled.div`
   height: 20px;
   margin-right: 10px;
   border-radius: 50%;
-  background-color: #1c85ff;
+  background-color: #dc143c;
   animation: ${bounce} 1s infinite ease-in-out;
   animation-delay: ${({ delay }) => delay};
 `;
