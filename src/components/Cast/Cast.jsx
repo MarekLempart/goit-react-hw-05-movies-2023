@@ -6,7 +6,6 @@ import { useParams } from 'react-router-dom'; // Hook do pobierania parametrów 
 import { fetchMovieCast } from '../../services/api'; // Funkcja do pobierania obsady filmu
 import {
   CastHeader,
-  CastImage,
   CastInfo,
   CastList,
   CastListItem,
@@ -48,13 +47,13 @@ const Cast = () => {
               {/* Sprawdzamy czy aktor ma przypisaną ścieżkę do zdjęcia profilowego */}
               {actor.profile_path ? (
                 // Jeśli tak, wyświetlamy zdjęcie z serwera TMDB
-                <CastImage
+                <img
                   src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`}
                   alt={`${actor.name} profile`}
                 />
               ) : (
                 // Jeśli nie, wyświetlamy domyślne zdjęcie zastępcze
-                <CastImage
+                <img
                   src={`https://via.placeholder.com/200x300?text=No+Image`}
                   alt={`${actor.name} profile`}
                 />

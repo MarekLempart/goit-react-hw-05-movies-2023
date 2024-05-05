@@ -12,7 +12,7 @@ export const MovieCardContainer = styled.div`
 export const Img = styled.img`
   height: 600px;
   width: 400px;
-  border-radius: 40px;
+  border-radius: 30px;
 `;
 
 export const MovieInfo = styled.div`
