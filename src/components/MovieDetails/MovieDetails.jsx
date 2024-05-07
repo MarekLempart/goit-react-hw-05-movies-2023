@@ -1,13 +1,13 @@
-// MovieDelails.jsx
+// MovieDetails.jsx
 
 // Importujemy potrzebne zależności i komponenty
 import { LoadingIndicator } from 'components/SharedLayout/LoadingDots'; // Komponent wskaźnika ładowania
 import { Suspense, useEffect, useState } from 'react'; // Importujemy hooki useEffect, useState i komponent Suspense z Reacta
 import { BsArrowLeftShort } from 'react-icons/bs'; // Ikona strzałki w lewo
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom'; // Hooki i komponenty związane z routerem
-import MovieCard from '../components/MovieCard/MovieCard'; // Komponent karty filmu
-import { fetchMovieById } from '../services/api'; // Funkcja do pobierania danych o filmie
-import { Button, Container } from './MovieDelails.styled'; // Stylizowane komponenty dla szczegółów filmu
+import { fetchMovieById } from '../../services/api'; // Funkcja do pobierania danych o filmie
+import MovieCard from '../MovieCard/MovieCard'; // Komponent karty filmu
+import { Button, Container } from './MovieDetails.styled'; // Stylizowane komponenty dla szczegółów filmu
 
 // Komponent MovieDetails
 const MovieDetails = () => {

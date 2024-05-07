@@ -13,7 +13,7 @@ const SharedLayout = lazy(() => import('./SharedLayout/SharedLayout')); // Kompo
 
 const Home = lazy(() => import('../pages/Home')); // Komponent strony głównej
 const Movies = lazy(() => import('../pages/Movies')); // Komponent strony filmów
-const MovieDetails = lazy(() => import('../pages/MovieDetails')); // Komponent szczegółów filmu
+const MovieDetails = lazy(() => import('./MovieDetails/MovieDetails')); // Komponent szczegółów filmu
 const Cast = lazy(() => import('./Cast/Cast')); // Komponent obsady filmu
 const Reviews = lazy(() => import('./Reviews/Reviews')); // Komponent recenzji filmu
 

@@ -1,4 +1,4 @@
-// MovieDelails.styled.js
+// MovieDetails.styled.js
 
 import styled from 'styled-components';
 
